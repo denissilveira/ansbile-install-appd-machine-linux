@@ -1,0 +1,11 @@
+---
+- name: copy machine agent file
+  copy: 
+    src: /srv/files/agents/machine/machineagent.zip
+    dest: /home/appdynamics/files/agents/machine/machineagent.zip
+    owner: appdynamics
+    group: appdynamics
+    mode: '0664'
+#notify:
+#   - copy file
+
