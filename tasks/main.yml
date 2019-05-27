@@ -1,11 +1,35 @@
 ---
+- name: create directory
+  file:
+    path: /home/appdynamics/files/agents/machine
+    state: directory
+
 - name: copy machine agent file
   copy: 
-    src: /srv/files/agents/machine/machineagent.zip
+    src: /srv/files/agents/machine/machineagent-linux.zip
     dest: /home/appdynamics/files/agents/machine/machineagent.zip
     owner: appdynamics
     group: appdynamics
     mode: '0664'
-#notify:
-#   - copy file
+
+- name: Unarchive machine agent
+  unarchive:
+    src: /home/appdynamics/files/agents/machine/machineagent.zip
+    dest: /home/appdynamics/files/agents/machine
+    remote_src: yes
+
+- name: delete agent zip
+  file:
+    path: /home/appdynamics/files/agents/machine/machineagent.zip
+    state: absent
+
+- name: delete configuration
+  file:
+    path: /home/appdynamics/files/agents/machine/conf/controller-info.xml
+    state: absent
+
+- name: copy configuration template
+  template: 
+    src: controller-info.j2
+    dest: /home/appdynamics/files/agents/machine/conf/controller-info.xml
 

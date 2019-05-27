@@ -1,2 +1,11 @@
 ---
 # vars file for machine
+controllerHost: host
+controllerPort: 443
+controllerSslEnabled: true
+enableOrchestration: false
+uniqueHostId: 
+accountAccessKey: key
+accountName: name
+simEnabled: true
+machinePath: 
